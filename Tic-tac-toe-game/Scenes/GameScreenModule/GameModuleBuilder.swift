@@ -8,13 +8,15 @@
 
 import UIKit
 
-protocol Builder {
-    static func createModule(_ game: Game) -> UIViewController
+protocol GameBuilder {
+    static func createModule(_ gameFields: Int) -> UIViewController
 }
 
-class GameScreenAssembly: Builder {
+class GameScreenAssembly: GameBuilder {
     
-    static func createModule(_ game: Game) -> UIViewController {
+    static func createModule(_ gameFields: Int) -> UIViewController {
+        let game = Game()
+        game.numberOfFields = gameFields
         let view = GameViewController(game: game)
        // let presenter = GamePresenter(view: view)
        // view.presenter = presenter
