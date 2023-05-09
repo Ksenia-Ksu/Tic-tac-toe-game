@@ -1,4 +1,3 @@
-
 import UIKit
 
 protocol DisplayGameView: UIView {
@@ -18,13 +17,15 @@ final class GameView: UIView {
         
     lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 15
-        let size = numberOfCellsInRow ?? 3
-        let width = ScreenSize.width/CGFloat(size) - 15
-        let heigh = ScreenSize.width/CGFloat(size) - 15
-        layout.itemSize = CGSize(width: width, height: heigh)
+        let padding: CGFloat = 15
+        let itemsCount = CGFloat(numberOfCellsInRow ?? 3)
+        let paddingCount = itemsCount + 1
+        let paddingSize = paddingCount * padding
+        let cellSize = (ScreenSize.width - paddingSize) / itemsCount
+        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        layout.minimumInteritemSpacing = padding
+        layout.minimumLineSpacing = padding
+        layout.itemSize = CGSize(width: cellSize, height: cellSize)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(GameCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -81,7 +82,6 @@ final class GameView: UIView {
             collectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),        collectionView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -10)
         ])
     }
-    
 }
 
 extension GameView: DisplayGameView {

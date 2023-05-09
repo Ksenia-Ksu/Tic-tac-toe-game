@@ -1,4 +1,3 @@
-
 import UIKit
 
 private let reuseIdentifier = "Cell"
@@ -37,7 +36,6 @@ final class GameCollectionViewCell: UICollectionViewCell {
             button.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 0),
             button.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 0),
             button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0)
-            
         ])
     }
     

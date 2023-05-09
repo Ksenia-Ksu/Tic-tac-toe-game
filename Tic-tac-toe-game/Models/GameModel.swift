@@ -13,7 +13,12 @@ class Game {
     var currentTurn = Turn.X
     var field = [[String]]()
     
-    init(numberOfFields: Int = 3, moves: Int = 0, firstTurn: Turn = Turn.X, currentTurn: Turn = Turn.X, field: [[String]] = [[String]]()) {
+    init(numberOfFields: Int = 3,
+         moves: Int = 0,
+         firstTurn: Turn = Turn.X,
+         currentTurn: Turn = Turn.X,
+         field: [[String]] = [[String]]()) {
+        
         self.numberOfFields = numberOfFields
         self.moves = moves
         self.firstTurn = firstTurn

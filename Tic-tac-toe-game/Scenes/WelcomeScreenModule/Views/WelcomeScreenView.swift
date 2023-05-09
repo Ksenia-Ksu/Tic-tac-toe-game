@@ -1,6 +1,4 @@
-
 import UIKit
-
 
 protocol DisplaysView: UIView {
     func configure(with viewModel: DataFlowWelcome.ViewModel)
@@ -60,7 +58,6 @@ final class WelcomeScreenView: UIView {
         return stepper
     }()
     
-   
     lazy var startButton: UIButton = {
         let startButton = UIButton()
         var config = UIButton.Configuration.filled()
@@ -73,7 +70,6 @@ final class WelcomeScreenView: UIView {
         startButton.translatesAutoresizingMaskIntoConstraints = false
         return startButton
     }()
-    
     
     required init(delegate: ViewDelegate) {
         super.init(frame: .zero)
@@ -88,7 +84,6 @@ final class WelcomeScreenView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     @objc func startGameButtonTapped() {
         delegate?.startGamebuttonTapped()
@@ -106,7 +101,6 @@ final class WelcomeScreenView: UIView {
         self.addSubview(stepper)
         self.addSubview(startButton)
     }
-    
     
     private func addConstraits() {
         NSLayoutConstraint.activate([

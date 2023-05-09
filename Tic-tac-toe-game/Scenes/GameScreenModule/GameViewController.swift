@@ -61,7 +61,6 @@ final class GameViewController: UIViewController {
     private func backToMainScreen() {
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
 }
 
 
