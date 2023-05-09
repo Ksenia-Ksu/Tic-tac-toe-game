@@ -1,17 +1,10 @@
-//
-//  GameCell.swift
-//  Tic-tac-toe-game
-//
-//  Created by Ксения Кобак on 06.05.2023.
-//
-
-
 
 import UIKit
 
 private let reuseIdentifier = "Cell"
 
 final class GameCollectionViewCell: UICollectionViewCell {
+    
     
     let button: UIButton = {
         var button = UIButton()
@@ -58,5 +51,4 @@ final class GameCollectionViewCell: UICollectionViewCell {
         button.configuration = config
         button.isEnabled = true
     }
-    
 }

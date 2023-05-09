@@ -26,6 +26,8 @@
 		85BD70412A09CBAB00D445B6 /* WelcomeScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD70402A09CBAB00D445B6 /* WelcomeScreenRouter.swift */; };
 		85BD70432A09D29500D445B6 /* GameDataFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD70422A09D29500D445B6 /* GameDataFlow.swift */; };
 		85BD70452A09D33E00D445B6 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD70442A09D33E00D445B6 /* GameView.swift */; };
+		85BD70472A09DC8D00D445B6 /* GameInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD70462A09DC8D00D445B6 /* GameInteractor.swift */; };
+		85BD70492A09F37200D445B6 /* GameRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BD70482A09F37200D445B6 /* GameRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		85BD70402A09CBAB00D445B6 /* WelcomeScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreenRouter.swift; sourceTree = "<group>"; };
 		85BD70422A09D29500D445B6 /* GameDataFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataFlow.swift; sourceTree = "<group>"; };
 		85BD70442A09D33E00D445B6 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		85BD70462A09DC8D00D445B6 /* GameInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInteractor.swift; sourceTree = "<group>"; };
+		85BD70482A09F37200D445B6 /* GameRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +134,9 @@
 				8586A4C72A05C84700A60CA2 /* GameViewController.swift */,
 				85BD70422A09D29500D445B6 /* GameDataFlow.swift */,
 				8586A4DF2A05CB2500A60CA2 /* GamePresenter.swift */,
+				85BD70462A09DC8D00D445B6 /* GameInteractor.swift */,
 				8586A4E12A05DE1400A60CA2 /* GameModuleBuilder.swift */,
+				85BD70482A09F37200D445B6 /* GameRouter.swift */,
 				8586A4EF2A06E2A000A60CA2 /* Views */,
 			);
 			path = GameScreenModule;
@@ -260,9 +266,11 @@
 				85BD70362A09A16000D445B6 /* WelcomeScreenPresenter.swift in Sources */,
 				85BD70432A09D29500D445B6 /* GameDataFlow.swift in Sources */,
 				8586A4EA2A067D1600A60CA2 /* GameCell.swift in Sources */,
+				85BD70472A09DC8D00D445B6 /* GameInteractor.swift in Sources */,
 				8586A4DA2A05C91600A60CA2 /* WelcomeScreenViewController.swift in Sources */,
 				8586A4E22A05DE1400A60CA2 /* GameModuleBuilder.swift in Sources */,
 				85BD70392A09A7E800D445B6 /* WelcomeScreenView.swift in Sources */,
+				85BD70492A09F37200D445B6 /* GameRouter.swift in Sources */,
 				8586A4E82A067ABA00A60CA2 /* Constants.swift in Sources */,
 				8586A4EC2A06DC4A00A60CA2 /* GameModel.swift in Sources */,
 			);

@@ -38,7 +38,6 @@ final class WelcomeScreenView: UIView {
         fieldsChoiseLabel.font = .systemFont(ofSize: 20)
         fieldsChoiseLabel.text = WelcomeScreenTextFor.fieldsChoiseLabel
         fieldsChoiseLabel.textAlignment =  .center
-        fieldsChoiseLabel.numberOfLines = 2
         fieldsChoiseLabel.translatesAutoresizingMaskIntoConstraints = false
         return fieldsChoiseLabel
     }()
@@ -54,8 +53,8 @@ final class WelcomeScreenView: UIView {
     lazy var stepper: UIStepper = {
         let stepper = UIStepper()
         stepper.value = 3
-        stepper.minimumValue = 3
-        stepper.maximumValue = 7
+        stepper.minimumValue = WelcomeScreenTextFor.stepperMinValue
+        stepper.maximumValue = WelcomeScreenTextFor.stepperMaxValue
         stepper.backgroundColor = .systemGreen
         stepper.translatesAutoresizingMaskIntoConstraints = false
         return stepper

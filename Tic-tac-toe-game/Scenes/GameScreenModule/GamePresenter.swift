@@ -1,46 +1,34 @@
-//
-//  GamePresenter.swift
-//  Tic-tac-toe-game
-//
-//  Created by Ксения Кобак on 06.05.2023.
-//
 
 import Foundation
 
-protocol GameViewProtocol: AnyObject {
-    func nextRound()
-    func restartGame()
-    //func playerDidMove()
-}
 
-protocol GameViewPresenterProtocol: AnyObject {
-    init(view: GameViewProtocol)
-    func showEmptyFields()
-    func showNewGame()
-    //func showNewMoveOnBoard()
+protocol GameViewPresentationLogic: AnyObject {
+    func showNewGame(_ response: GameDataFlow.FetchGame.Response)
+    func showNewMoveOnBoard(_ response: GameDataFlow.FetchGame.Response)
+    func showWinner(_ response: GameDataFlow.SelectCell.Response)
+    func showTheEndGame()
 }
 
 
-class GamePresenter: GameViewPresenterProtocol {
+class GamePresenter: GameViewPresentationLogic {
+   
+    weak var viewController: DisplayGameViewLogic?
     
-    
-    
-    
-    
-    weak var view: GameViewProtocol?
-
-    
-    required init(view: GameViewProtocol) {
-        self.view = view
-        
+    func showNewGame(_ response: GameDataFlow.FetchGame.Response) {
+        let viewModel = GameViewModel(size: response.model.numberOfFields, currentPlayer: response.model.currentTurn.rawValue)
+        viewController?.displayNewGame(.init(gameViewModel: viewModel))
     }
     
-    
-    func showEmptyFields() {
-        print("Empty fields")
+    func showNewMoveOnBoard(_ response: GameDataFlow.FetchGame.Response) {
+        let viewModel = GameViewModel(size: response.model.numberOfFields, currentPlayer: response.model.currentTurn.rawValue)
+        viewController?.displayNewField(.init(gameViewModel: viewModel))
     }
     
-    func showNewGame() {
-        print("Restart game")
+    func showWinner(_ response: GameDataFlow.SelectCell.Response) {
+        viewController?.displayWinner(.init(gameViewModel: response.motion.rawValue))
+    }
+    
+    func showTheEndGame() {
+        viewController?.displayTheEndGame()
     }
 }

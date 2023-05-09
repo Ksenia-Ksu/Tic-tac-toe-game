@@ -15,12 +15,14 @@ protocol GameBuilder {
 class GameScreenAssembly: GameBuilder {
     
     static func createModule(_ gameFields: Int) -> UIViewController {
-        let game = Game()
-        game.numberOfFields = gameFields
-        let view = GameViewController(game: game)
-       // let presenter = GamePresenter(view: view)
-       // view.presenter = presenter
-        return view
+        let game = Game(numberOfFields: gameFields)
+        let presenter = GamePresenter()
+        let interactor = GameInteractor(presenter: presenter, game: game)
+        let router = GameRouter()
+        let vc = GameViewController(interactor: interactor, router: router, numberOfFields: gameFields)
+        presenter.viewController = vc
+        router.viewController = vc
+        return vc
     }
 }
     
