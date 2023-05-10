@@ -11,14 +11,14 @@ protocol GameViewDelegate: AnyObject {
 
 final class GameView: UIView {
     
-    var numberOfCellsInRow: Int?
+    var numberOfCellsInRow = 3
     
     private weak var delagate: GameViewDelegate?
         
     lazy var collectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let padding: CGFloat = 15
-        let itemsCount = CGFloat(numberOfCellsInRow ?? 3)
+        let itemsCount = CGFloat(numberOfCellsInRow)
         let paddingCount = itemsCount + 1
         let paddingSize = paddingCount * padding
         let cellSize = (ScreenSize.width - paddingSize) / itemsCount
@@ -28,7 +28,7 @@ final class GameView: UIView {
         layout.itemSize = CGSize(width: cellSize, height: cellSize)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(GameCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(GameCollectionViewCell.self, forCellWithReuseIdentifier: "GameCollectionViewCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -72,14 +72,15 @@ final class GameView: UIView {
     private func addConstraits() {
         NSLayoutConstraint.activate([
             turnLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            turnLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: 15),
+            turnLabel.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor, constant: Layout.GameScreen.offset),
             
             whoseTurn.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            whoseTurn.topAnchor.constraint(equalTo: turnLabel.bottomAnchor, constant: 15),
+            whoseTurn.topAnchor.constraint(equalTo: turnLabel.bottomAnchor, constant: Layout.GameScreen.offset),
             
-            collectionView.topAnchor.constraint(equalTo: whoseTurn.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: whoseTurn.bottomAnchor, constant: Layout.GameScreen.offset),
             collectionView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 0),
-            collectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),        collectionView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -10)
+            collectionView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: 0)
         ])
     }
 }

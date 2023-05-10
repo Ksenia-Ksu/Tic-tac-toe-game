@@ -1,15 +1,14 @@
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "GameCollectionViewCell"
 
 final class GameCollectionViewCell: UICollectionViewCell {
-    
     
     let button: UIButton = {
         var button = UIButton()
         var config = UIButton.Configuration.plain()
         var container = AttributeContainer()
-        container.font = .boldSystemFont(ofSize: 30)
+        container.font = .boldSystemFont(ofSize: 50)
         config.attributedTitle = AttributedString("", attributes: container)
         config.background.backgroundColor = .systemGreen
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -22,15 +21,12 @@ final class GameCollectionViewCell: UICollectionViewCell {
         setupViews()
     }
     
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
     private func setupViews() {
-       
         contentView.addSubview(button)
-        
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
             button.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 0),
@@ -41,8 +37,7 @@ final class GameCollectionViewCell: UICollectionViewCell {
     
     func reloadButtonText() {
         var config = UIButton.Configuration.plain()
-        var container = AttributeContainer()
-        container.font = .boldSystemFont(ofSize: 30)
+        let container = AttributeContainer()
         config.attributedTitle = AttributedString("", attributes: container)
         config.background.backgroundColor = .systemGreen
         button.translatesAutoresizingMaskIntoConstraints = false

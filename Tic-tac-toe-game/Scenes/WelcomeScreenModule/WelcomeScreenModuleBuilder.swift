@@ -5,7 +5,6 @@ protocol Builder {
 }
 
 public struct WelcomeModuleBuilder: Builder {
-    
     static func createModule() -> UIViewController {
         let presenter = WelcomeScreenPresenter()
         let interactor = WelcomeScreenInteractor(presenter: presenter)

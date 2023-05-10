@@ -77,14 +77,9 @@ final class GameInteractor: GameBusinessLogic {
         
         game.field[row][column] = motion
         let numberFields = game.numberOfFields
-        
-        //check row
-        
         if Set(game.field[row]).count == 1 {
             return true
         } else {
-            
-            //check column
             var columns = [String]()
             for i in 0..<numberFields {
                 columns.append(game.field[i][column])
@@ -92,9 +87,7 @@ final class GameInteractor: GameBusinessLogic {
             if Set(columns).count == 1 {
                 return true
             }
-            
-            //check main diagonal
-            
+         
             if row == column {
                 var mainDiagonal = [String]()
                 for i in 0..<numberFields {
@@ -104,9 +97,6 @@ final class GameInteractor: GameBusinessLogic {
                     return true
                 }
             } else {
-                
-                //secondaryDiagonal
-                
                 var secondaryDiagonal = [String]()
                 for i in 0..<numberFields {
                     secondaryDiagonal.append(game.field[i][numberFields - i - 1])

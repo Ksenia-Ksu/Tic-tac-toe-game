@@ -9,7 +9,7 @@ protocol GameViewPresentationLogic: AnyObject {
 }
 
 
-class GamePresenter: GameViewPresentationLogic {
+final class GamePresenter: GameViewPresentationLogic {
    
     weak var viewController: DisplayGameViewLogic?
     

@@ -13,18 +13,36 @@ final class WelcomeScreenView: UIView {
     
     private weak var delegate: ViewDelegate?
     
-    lazy var pictures: UILabel = {
-        let pictures = UILabel()
-        pictures.font = .boldSystemFont(ofSize: 25)
-        pictures.text = WelcomeScreenTextFor.picturesLabel
-        pictures.textAlignment = .center
-        pictures.translatesAutoresizingMaskIntoConstraints = false
-        return pictures
+    lazy var picturesRowOne: UILabel = {
+        let picturesRowOne = UILabel()
+        picturesRowOne.font = .boldSystemFont(ofSize: 35)
+        picturesRowOne.text = WelcomeScreenTextFor.firstRowPicturesLabel
+        picturesRowOne.textAlignment = .center
+        picturesRowOne.translatesAutoresizingMaskIntoConstraints = false
+        return picturesRowOne
+    }()
+    
+    lazy var picturesRowTwo: UILabel = {
+        let picturesRowTwo = UILabel()
+        picturesRowTwo.font = .boldSystemFont(ofSize: 35)
+        picturesRowTwo.text = WelcomeScreenTextFor.secondRowPicturesLabel
+        picturesRowTwo.textAlignment = .center
+        picturesRowTwo.translatesAutoresizingMaskIntoConstraints = false
+        return picturesRowTwo
+    }()
+    
+    lazy var picturesRowThree: UILabel = {
+        let picturesRowThree = UILabel()
+        picturesRowThree.font = .boldSystemFont(ofSize: 35)
+        picturesRowThree.text = WelcomeScreenTextFor.thirdRowPicturesLabel
+        picturesRowThree.textAlignment = .center
+        picturesRowThree.translatesAutoresizingMaskIntoConstraints = false
+        return picturesRowThree
     }()
     
     lazy var welcomeLabel: UILabel = {
         let welcomeLabel = UILabel()
-        welcomeLabel.font = .systemFont(ofSize: 25)
+        welcomeLabel.font = .boldSystemFont(ofSize: 25)
         welcomeLabel.text = WelcomeScreenTextFor.welcomeLabel
         welcomeLabel.textAlignment = .center
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +60,7 @@ final class WelcomeScreenView: UIView {
     
     lazy var fieldsCounter: UILabel = {
         let fieldsCounter = UILabel()
-        fieldsCounter.font = .boldSystemFont(ofSize: 30)
+        fieldsCounter.font = .boldSystemFont(ofSize: 35)
         fieldsCounter.text = WelcomeScreenTextFor.fieldsCounterLabel
         fieldsCounter.translatesAutoresizingMaskIntoConstraints = false
         return fieldsCounter
@@ -50,7 +68,7 @@ final class WelcomeScreenView: UIView {
     
     lazy var stepper: UIStepper = {
         let stepper = UIStepper()
-        stepper.value = 3
+        stepper.value = WelcomeScreenTextFor.stepperMinValue
         stepper.minimumValue = WelcomeScreenTextFor.stepperMinValue
         stepper.maximumValue = WelcomeScreenTextFor.stepperMaxValue
         stepper.backgroundColor = .systemGreen
@@ -64,7 +82,7 @@ final class WelcomeScreenView: UIView {
         config.baseBackgroundColor = .systemGreen
         config.baseForegroundColor = .white
         var container = AttributeContainer()
-        container.font = .boldSystemFont(ofSize: 20)
+        container.font = .boldSystemFont(ofSize: 30)
         config.attributedTitle = AttributedString(WelcomeScreenTextFor.startButton, attributes: container)
         startButton.configuration = config
         startButton.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +112,9 @@ final class WelcomeScreenView: UIView {
     }
     
     private func addSubviews() {
-        self.addSubview(pictures)
+        self.addSubview(picturesRowOne)
+        self.addSubview(picturesRowTwo)
+        self.addSubview(picturesRowThree)
         self.addSubview(welcomeLabel)
         self.addSubview(fieldsChoiseLabel)
         self.addSubview(fieldsCounter)
@@ -104,26 +124,31 @@ final class WelcomeScreenView: UIView {
     
     private func addConstraits() {
         NSLayoutConstraint.activate([
+            picturesRowOne.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            picturesRowOne.bottomAnchor.constraint(equalTo: picturesRowTwo.topAnchor, constant: 0),
             
-            pictures.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            pictures.bottomAnchor.constraint(equalTo: welcomeLabel.topAnchor, constant: -30),
+            picturesRowTwo.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            picturesRowTwo.bottomAnchor.constraint(equalTo: picturesRowThree.topAnchor, constant: 0),
+            
+            picturesRowThree.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            picturesRowThree.bottomAnchor.constraint(equalTo: welcomeLabel.topAnchor, constant: -Layout.WelcomeScreen.offset),
             
             welcomeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            welcomeLabel.bottomAnchor.constraint(equalTo: fieldsChoiseLabel.topAnchor, constant: -30),
+            welcomeLabel.bottomAnchor.constraint(equalTo: fieldsChoiseLabel.topAnchor, constant: -Layout.WelcomeScreen.offset),
 
-            fieldsChoiseLabel.bottomAnchor.constraint(equalTo: fieldsCounter.topAnchor, constant: -20),
+            fieldsChoiseLabel.bottomAnchor.constraint(equalTo: fieldsCounter.topAnchor, constant: -Layout.WelcomeScreen.offset),
             fieldsChoiseLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
            
             fieldsCounter.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
             fieldsCounter.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 0),
             
             stepper.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            stepper.topAnchor.constraint(equalTo: fieldsCounter.bottomAnchor, constant: 20),
+            stepper.topAnchor.constraint(equalTo: fieldsCounter.bottomAnchor, constant: Layout.WelcomeScreen.offset),
 
             startButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            startButton.topAnchor.constraint(equalTo: stepper.bottomAnchor, constant: 40),
-            startButton.heightAnchor.constraint(equalToConstant: 60),
-            startButton.widthAnchor.constraint(equalToConstant: 100),
+            startButton.topAnchor.constraint(equalTo: stepper.bottomAnchor, constant: Layout.WelcomeScreen.offset),
+            startButton.heightAnchor.constraint(equalToConstant: Layout.WelcomeScreen.startButtonHeigh),
+            startButton.widthAnchor.constraint(equalToConstant: Layout.WelcomeScreen.startButtonWidth),
         ])
     }
 }

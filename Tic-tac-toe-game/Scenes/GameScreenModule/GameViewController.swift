@@ -11,7 +11,7 @@ protocol DisplayGameViewLogic: AnyObject {
 final class GameViewController: UIViewController {
     
     var numberOfFields: Int
-    
+        
     private let interactor: GameBusinessLogic
     lazy var contentView: DisplayGameView = GameView(dataSource: self, delegate: self, numberOfCellsInRow: numberOfFields)
     var viewModelData: GameDataFlow.FetchGame.ViewModel?
@@ -51,13 +51,13 @@ final class GameViewController: UIViewController {
     private func changeButtonTitle(sender: UIButton, title: String) {
             var config = UIButton.Configuration.plain()
             var container = AttributeContainer()
-            container.font = .boldSystemFont(ofSize: 30)
+            container.font = .boldSystemFont(ofSize: 50)
             container.foregroundColor = .white
             config.attributedTitle = AttributedString(title, attributes: container)
             config.background.backgroundColor = .systemGreen
             sender.configuration = config
     }
-
+    
     private func backToMainScreen() {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -75,7 +75,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! GameCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameCollectionViewCell", for: indexPath) as! GameCollectionViewCell
         cell.button.tag = indexPath.row
         cell.reloadButtonText()
         cell.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
@@ -98,19 +98,23 @@ extension GameViewController: DisplayGameViewLogic {
     }
     
     func displayWinner(_ viewModel: GameDataFlow.SelectCell.ViewModel) {
-        router.routeToAlert(title: "\(GameScreenTextFor.Alert.winner)" + "\(viewModel.gameViewModel)") {
-            self.backToMainScreen()
-        } completionRight: {
-            self.interactor.startGame(.init(numberOfFields: self.numberOfFields))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.router.routeToAlert(title: "\(GameScreenTextFor.Alert.winner)" + "\(viewModel.gameViewModel)") {
+                self.backToMainScreen()
+            } completionRight: {
+                self.interactor.startGame(.init(numberOfFields: self.numberOfFields))
+            }
         }
     }
     
     func displayTheEndGame() {
-        router.routeToAlert(title: GameScreenTextFor.Alert.noWinner) {
-            self.backToMainScreen()
-        } completionRight: {
-            self.interactor.startGame(.init(numberOfFields: self.numberOfFields))
-            self.contentView.reloadCollectionView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.router.routeToAlert(title: GameScreenTextFor.Alert.noWinner) {
+                self.backToMainScreen()
+            } completionRight: {
+                self.interactor.startGame(.init(numberOfFields: self.numberOfFields))
+                self.contentView.reloadCollectionView()
+            }
         }
     }
 }

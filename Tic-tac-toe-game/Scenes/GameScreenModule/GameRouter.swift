@@ -11,7 +11,9 @@ final class GameRouter: GameRouting {
     
     weak var viewController: UIViewController?
     
-    func routeToAlert(title: String, completionLeft: @escaping (() -> Void), completionRight: @escaping(() -> Void)) {
+    func routeToAlert(title: String,
+                      completionLeft: @escaping (() -> Void),
+                      completionRight: @escaping(() -> Void)) {
         let alert = UIAlertController(
             title: title,
             message: nil,
@@ -19,12 +21,12 @@ final class GameRouter: GameRouting {
         )
         let actionRestartLeft = UIAlertAction(title: GameScreenTextFor.Alert.restart,
                                               style: .cancel) { _ in
-                                              completionLeft()
+            completionLeft()
                                               }
         
         let actionNextRoundRight = UIAlertAction(title: GameScreenTextFor.Alert.nextRound,
                                                  style:  .default) { _ in
-                                                 completionRight()
+            completionRight()
                                                  }
         alert.addAction(actionRestartLeft)
         alert.addAction(actionNextRoundRight)

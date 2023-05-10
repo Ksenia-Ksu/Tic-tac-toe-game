@@ -13,7 +13,6 @@ protocol GameBuilder {
 }
 
 class GameScreenAssembly: GameBuilder {
-    
     static func createModule(_ gameFields: Int) -> UIViewController {
         let game = Game(numberOfFields: gameFields)
         let presenter = GamePresenter()
