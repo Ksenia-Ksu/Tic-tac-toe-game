@@ -1,9 +1,3 @@
-//
-//  Models.swift
-//  Tic-tac-toe-game
-//
-//  Created by Ксения Кобак on 06.05.2023.
-//
 
 import Foundation
 
@@ -13,63 +7,30 @@ enum Turn: String {
 }
 
 class Game {
-    
     var numberOfFields = 3
+    var moves = 0
     var firstTurn = Turn.X
     var currentTurn = Turn.X
+    var field = [[String]]()
     
-    private var field = [[String]]()
-    
-    func createGame() {
-        field = [[String]](repeating: [String](repeating: "-", count: numberOfFields), count: numberOfFields)
+    init(numberOfFields: Int = 3,
+         moves: Int = 0,
+         firstTurn: Turn = Turn.X,
+         currentTurn: Turn = Turn.X,
+         field: [[String]] = [[String]]()) {
+        
+        self.numberOfFields = numberOfFields
+        self.moves = moves
+        self.firstTurn = firstTurn
+        self.currentTurn = currentTurn
+        self.field = field
     }
-    
-    func isWinner(_ row: Int, _ column: Int, motion: String) -> Bool {
-        
-        field[row][column] = motion
-        
-        //check row
-        
-        if Set(field[row]).count == 1 {
-            return true
-        } else {
-            
-            //check column
-            var columns = [String]()
-            for i in 0..<numberOfFields {
-                columns.append(field[i][column])
-            }
-            if Set(columns).count == 1 {
-                return true
-            }
-            
-            //check main diagonal
-            
-            if row == column {
-               var mainDiagonal = [String]()
-                for i in 0..<numberOfFields {
-                    mainDiagonal.append(field[i][i])
-                }
-                if Set(mainDiagonal).count == 1 && mainDiagonal[0] != "-" {
-                    return true
-                }
-            } else {
-                
-                //secondaryDiagonal
-                
-                var secondaryDiagonal = [String]()
-                for i in 0..<numberOfFields {
-                    secondaryDiagonal.append(field[i][numberOfFields - i - 1])
-                }
-                if Set(secondaryDiagonal).count == 1 && secondaryDiagonal[0] != "-" {
-                    return true
-                }
-            }
-        }
-        
-        
-        return false
-    }
-    
+}
+
+//MARK: - ViewModel
+
+struct GameViewModel {
+    var size: Int
+    var currentPlayer: String
 }
 
