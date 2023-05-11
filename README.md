@@ -4,6 +4,7 @@
 ## Tecnical Stack
 * iOS 15+
 * UiKit
+* VIP (Clean Swift)
 
 ## Overview
 <img width="260" alt="Screenshot 2023-05-10 at 23 01 02" src="https://github.com/Ksenia-Ksu/Tic-tac-toe-game/assets/79209115/6e339deb-8552-40c2-b88e-6a51a1b6c81e">
